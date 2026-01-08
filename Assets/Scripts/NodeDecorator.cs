@@ -6,6 +6,6 @@ public abstract class NodeDecorator : NodeBase
 
     public NodeDecorator(NodeBase child)
     {
-        this.Child = child;
+        Child = child;
     }
 }
