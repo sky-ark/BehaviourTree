@@ -3,25 +3,25 @@ using UnityEngine;
 public class Chase : NodeLeaf
 {
     private Transform _self;
-    private EnemySensor _sensor;
+    private Blackboard _blackboard;
     private float _speed;
-    private float _stopDistance;
+    private float _attackRange;
     
-    public Chase(Transform self, EnemySensor sensor, float speed = 5f, float stopDistance = 1f)
+    public Chase(Transform self, Blackboard blackboard, float speed = 5f, float attackRange = 1f)
     {
         _self = self;
-        _sensor = sensor;
+        _blackboard = blackboard;
         _speed = speed;
-        _stopDistance = stopDistance;
+        _attackRange = attackRange;
     }
     
     public override NodeState Execute()
     {
         // Move towards the player
-        Vector3 direction = (_sensor.DetectedPlayer.position - _self.position);
+        Vector3 direction = (_blackboard.Target.position - _self.position);
         float distance = direction.magnitude;
         // Check if within stop distance
-        if (distance <= _stopDistance)
+        if (distance <= _attackRange)
             return NodeState.SUCCESS;
         
         Vector3 move = direction.normalized * (_speed * Time.deltaTime);

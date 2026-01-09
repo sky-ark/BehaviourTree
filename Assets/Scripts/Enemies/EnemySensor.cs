@@ -3,15 +3,16 @@ using UnityEngine;
 
 public class EnemySensor : MonoBehaviour
 {
-    public bool IsVisible { get; private set; }
-    public Transform DetectedPlayer { get; private set; }
+
+    public Blackboard Blackboard;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player detected!");
-            IsVisible = true;
-            DetectedPlayer = other.transform;
+            Blackboard.Target = other.transform;
+            Blackboard.IsPlayerVisible = true;
+            Blackboard.LastKnownPlayerPosition = other.transform.position;
         }
     }
 
@@ -19,8 +20,8 @@ public class EnemySensor : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            IsVisible = false;
-            DetectedPlayer = null;
+            Blackboard.Target = null;
+            Blackboard.IsPlayerVisible = false;
         }
     }
 }
