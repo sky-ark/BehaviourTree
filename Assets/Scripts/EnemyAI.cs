@@ -1,17 +1,16 @@
-using System;
-using DefaultNamespace;
 using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
     private NodeRoot _root;
-
+    private EnemySensor _sensor;
+    
     [SerializeField] private float _chaseSpeed = 5f;
     [SerializeField] private float _patrolSpeed = 3f;
     [SerializeField] private Transform[] _patrolPoints;
     private void Start()
     {
-        EnemySensor sensor = GetComponentInChildren<EnemySensor>();
+        _sensor = GetComponentInChildren<EnemySensor>();
         
         // Add node root and selector
         _root = new NodeRoot();
@@ -20,8 +19,8 @@ public class EnemyAI : MonoBehaviour
 
         NodeSequence a = new NodeSequence();
         selector.Children.Add(a);
-        NodeLeaf aa = new IsPlayerVisible(sensor);
-        NodeLeaf ab = new Chase(transform, sensor, _chaseSpeed, 1f);
+        NodeLeaf aa = new IsPlayerVisible(_sensor);
+        NodeLeaf ab = new Chase(transform, _sensor, _chaseSpeed, 1f);
         a.Children.Add(aa);
         a.Children.Add(ab);
         

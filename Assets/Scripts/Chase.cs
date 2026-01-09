@@ -1,4 +1,3 @@
-using DefaultNamespace;
 using UnityEngine;
 
 public class Chase : NodeLeaf
@@ -15,9 +14,9 @@ public class Chase : NodeLeaf
         _speed = speed;
         _stopDistance = stopDistance;
     }
+    
     public override NodeState Execute()
     {
-        if (_sensor.DetectedPlayer == null || !_sensor.IsVisible) return NodeState.FAILURE;
         // Move towards the player
         Vector3 direction = (_sensor.DetectedPlayer.position - _self.position);
         float distance = direction.magnitude;
@@ -25,7 +24,7 @@ public class Chase : NodeLeaf
         if (distance <= _stopDistance)
             return NodeState.SUCCESS;
         
-        Vector3 move = direction.normalized * _speed * Time.deltaTime;
+        Vector3 move = direction.normalized * (_speed * Time.deltaTime);
         _self.position += move;
         
         if (move != Vector3.zero)

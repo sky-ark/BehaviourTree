@@ -1,6 +1,3 @@
-using DefaultNamespace;
-using UnityEngine;
-
 public class IsPlayerVisible : NodeLeaf
 {
     private EnemySensor _sensor;

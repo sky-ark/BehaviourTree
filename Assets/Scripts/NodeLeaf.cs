@@ -1,7 +1,4 @@
-﻿namespace DefaultNamespace
+﻿public abstract class NodeLeaf : NodeBase
 {
-    public abstract class NodeLeaf : NodeBase
-    {
-        public abstract override NodeState Execute();
-    }
+    public abstract override NodeState Execute();
 }
