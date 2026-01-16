@@ -1,3 +1,4 @@
+using Enemies;
 using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
@@ -5,7 +6,8 @@ public class EnemyAI : MonoBehaviour
     private NodeRoot _root;
     private EnemySensor _sensor;
     private Blackboard _blackboard;
-
+    
+    
     [SerializeField] private float _chaseSpeed = 5f;
     [SerializeField] private float _patrolSpeed = 3f;
     [SerializeField] private Transform[] _patrolPoints;
